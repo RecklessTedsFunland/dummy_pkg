@@ -1,6 +1,8 @@
-MIT License
+# Dummy Test Package
 
-Copyright (c) 2024 Reckless Ted's Funland
+# MIT License
+
+**Copyright (c) 2024 Reckless Ted's Funland**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
