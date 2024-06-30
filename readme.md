@@ -1,5 +1,25 @@
 # Dummy Test Package
 
+This is for testing ... not sure what value it is to others.
+
+## Nodes
+
+```bash
+ros2 run dummy_pkg <node>
+```
+
+- `dummy_node`: doesn't do anything
+- `lidar_node`: publishes a `LaserScan` message
+- `transform_node`: publishes a `TransformedStamped` message
+
+## Launch
+
+```bash
+ros2 launch dummy_pkg <script>
+```
+
+- TBD
+
 # MIT License
 
 **Copyright (c) 2024 Reckless Ted's Funland**
