@@ -20,6 +20,31 @@ ros2 launch dummy_pkg <script>
 
 - TBD
 
+## ROS2 Useful Packages
+
+- [`image_transport` tutorials](https://github.com/ros-perception/image_transport_tutorials/tree/main) for ROS2
+- [ROS2 Apriltag detector](https://github.com/christianrauch/apriltag_ros/tree/master): Find apriltags in image
+  - subscribe:
+    - `image_rect`(`raw`): `sensor_msgs/msg/Image`
+    - `image_rect/compressed`: `sensor_msg/msg/CompressedImage`
+    - `camera_info`: `sensor_msgs/msg/CameraInfo`
+  - publish:
+    - `tf`: `tf2_msgs/msg/TFMessage` and `child_frame_id` is set to `tag<family>:<id>` (e.g., `tag36h11:21`)
+    - `detections`: `apriltag_msgs/msg/AprilTagDetectionArray`
+- [ROS2 Apriltag Messages](https://github.com/christianrauch/apriltag_msgs/tree/master): Broadcast messages of tags
+  - `AprilTagDetection`: single tag detection
+  - `AprilTagDetectionArray`: multiple tag detections
+  - `Point`: 2D x,y point used in above messages
+- [Apriltag Draw Marker on Image](https://github.com/christianrauch/apriltag_viz/tree/master): Debug, show Apriltag found in image
+  - publish: `tag_detections_image`
+  - subscribe:
+    - `image`: `image_transport`
+    - `detections`: `AprilTagDetectionArray`
+  - parameters:
+    - `overlay_mode`: `string`, draw axes on image, default is `axes`
+    - `image_transport`: default is `raw`
+- [libcamera simple camera code](https://github.com/christianrauch/simple-cam/tree/master): maybe useful for writing C++ libcamera driver?
+
 # MIT License
 
 **Copyright (c) 2024 Reckless Ted's Funland**
