@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 project(dummy_pkg
     LANGUAGES C CXX)
-set(CMAKE_C_STANDARD 17)
-set(CMAKE_CXX_STANDARD 20)
+# set(CMAKE_C_STANDARD 17)
+# set(CMAKE_CXX_STANDARD 20)
 
 string (APPEND CMAKE_CXX_FLAGS_RELEASE " -O3 ")
 string (APPEND CMAKE_C_FLAGS_RELEASE " -O3 ")
@@ -51,7 +51,7 @@ foreach(app ${node_list})
     target_include_directories(${app} PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
-    # target_compile_features(${app} PUBLIC c_std_17 cxx_std_20)  # Require C99 and C++17
+    target_compile_features(${app} PUBLIC c_std_17 cxx_std_20)  # Require C99 and C++17
     ament_target_dependencies(
         ${app}
         geometry_msgs

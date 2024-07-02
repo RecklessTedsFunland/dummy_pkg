@@ -1,10 +1,12 @@
 # Dummy Test Package
 
-This is for testing ... not sure what value it is to others.
+This is for testing ... not sure what value it is to others. I am just trying out
+some ros2 things.
 
 ## Nodes
 
 ```bash
+colcon build --packages-select dummy_pkg
 ros2 run dummy_pkg <node>
 ```
 
@@ -19,6 +21,26 @@ ros2 launch dummy_pkg <script>
 ```
 
 - TBD
+
+
+### Foxglove
+
+```python
+Node(
+    package="foxglove_bridge",
+    executable="foxglove_bridge",
+    name="foxglove_bridge",
+    parameters=[
+        {"port": 8765},
+        {"address": "0.0.0.0"},
+        {"tls": False},
+        {"topic_whitelist": [".*"]},
+        {"send_buffer_limit": 10000000},
+        {"use_sim_time": False},
+        {"num_threads": 0}
+    ]
+)
+```
 
 ## ROS2 Useful Packages
 
