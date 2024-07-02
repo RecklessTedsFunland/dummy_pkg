@@ -1,9 +1,16 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from math import pi
 # from rosbag2.launch_actions import Record
+import os
+from ament_index_python.packages import get_package_share_directory
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 # Ref
 # https://github.com/foxglove/ros-foxglove-bridge
+
+world2laser = "--x 1 --y 1 --z 1 --yaw {yaw} --pitch 0 --roll 0 --child-frame-id lidar --frame-id world".format(yaw=45*pi/180).split(' ')
 
 def generate_launch_description():
     return LaunchDescription([
@@ -21,21 +28,34 @@ def generate_launch_description():
                 {"num_threads": 0}
             ]
         ),
+
+        # XML seems not to work
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(
+        #         [os.path.join(get_package_share_directory('foxglove_bridge'), 'launch'),
+        #         '/foxglove_bridge_launch.xml']
+        #     )
+        # ),
+        # Node(
+        #     package="rtf_pyopencv_camera",
+        #     executable="pycamera",
+        #     name="camera"
+        # ),
         Node(
-            package="rtf_pyopencv_camera",
-            executable="pycamera",
-            name="camera"
-        )
+            package='dummy_pkg',
+            executable='lidar_node',
+            name='lidar'
+        ),
         # Node(
         #     package='rtf_sensors',
         #     executable='rtf_imu',
         #     name='imu'
         # ),
-        # Node(
-        #     package = "tf2_ros",
-        #     executable = "static_transform_publisher",
-        #     arguments = ["0","0","0","0","0","0","world","laser"]
-        # ),
+        Node(
+            package = "tf2_ros",
+            executable = "static_transform_publisher",
+            arguments = world2laser
+        ),
         # Node(
         #     package='rtf_lidar',
         #     executable='rtf_urg',

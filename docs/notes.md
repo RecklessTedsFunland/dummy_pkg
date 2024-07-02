@@ -25,3 +25,18 @@ $ sudo umount /mnt/usbdrive
 ```bash
 ros2 launch foxglove_bridge foxglove_bridge_launch.xml
 ```
+
+## Static Transform Publisher
+
+> **NOTE:** You can **only** have one `static_transform_publisher` per process. This seems
+> to suck for launch files
+
+```python
+world2laser = "--x 1 --y 1 --z 1 --yaw {yaw} --pitch 0 --roll 0 --child-frame-id lidar --frame-id world".format(yaw=45*pi/180).split(' ')
+
+Node(
+    package = "tf2_ros",
+    executable = "static_transform_publisher",
+    arguments = world2laser
+)
+```
