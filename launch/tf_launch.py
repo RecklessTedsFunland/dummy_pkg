@@ -10,7 +10,11 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 # Ref
 # https://github.com/foxglove/ros-foxglove-bridge
 
-world2laser = "--x 1 --y 1 --z 1 --yaw {yaw} --pitch 0 --roll 0 --child-frame-id lidar --frame-id world".format(yaw=45*pi/180).split(' ')
+# world2laser = "--x 1 --y 1 --z 1 --yaw {yaw} --pitch 0 --roll 0 --child-frame-id lidar --frame-id world".format(yaw=45*pi/180).split(' ')
+world2laser = "--x {x} --y {y} --z {z} ".format(x=0.0, y=0.0, z=0.2)
+world2laser += "--yaw {yaw} --pitch {pitch} --roll {roll} ".format(yaw=0*pi/180, pitch=0*pi/180, roll=0*pi/180)
+world2laser += "--child-frame-id {child} --frame-id {parent}".format(child="lidar", parent="world")
+world2laser = world2laser.split(' ')
 
 def generate_launch_description():
     return LaunchDescription([
