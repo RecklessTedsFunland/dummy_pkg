@@ -11,11 +11,6 @@ def generate_launch_description():
             name='imu'
         ),
         Node(
-            package = "tf2_ros",
-            executable = "static_transform_publisher",
-            arguments = ["0","0","0","0","0","0","world","laser"]
-        ),
-        Node(
             package='rtf_lidar',
             executable='rtf_urg',
             name='lidar',

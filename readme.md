@@ -20,7 +20,8 @@ ros2 run dummy_pkg <node>
 ros2 launch dummy_pkg <script>
 ```
 
-- TBD
+- `tf_launch`
+- `rosbag_launch`: run `imu_node` and `urg_node` and stores messages in a bag
 
 
 ### Foxglove
