@@ -58,7 +58,8 @@ foreach(app ${node_list})
     add_executable(${app} src/${app}.cpp)
     target_include_directories(${app} PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
+        $<INSTALL_INTERFACE:include/${PROJECT_NAME}>
+    )
     # target_compile_features(${app} PUBLIC c_std_17 cxx_std_20)  # Require C99 and C++17
     ament_target_dependencies(
         ${app}
@@ -70,7 +71,8 @@ foreach(app ${node_list})
     )
 
     install(TARGETS ${app}
-        DESTINATION lib/${PROJECT_NAME})
+        DESTINATION lib/${PROJECT_NAME}
+    )
 endforeach()
 
 install(DIRECTORY launch

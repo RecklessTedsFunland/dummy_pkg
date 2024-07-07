@@ -14,7 +14,8 @@ vector<Params> handle_args(int argc, char ** argv) {
   vector<Params> args;
   for (int i=1; i<argc; ++i) {
     string s(argv[i]);
-    if (s.find("--") == 0) {
+    if (s == "--ros-args") break;
+    else if (s.find("--") == 0) {
       size_t loc = s.find('=');
       if (loc != string::npos) {
         string key = s.substr(2,loc-2);
