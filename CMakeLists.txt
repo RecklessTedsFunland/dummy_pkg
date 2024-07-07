@@ -4,11 +4,18 @@ project(dummy_pkg
 # set(CMAKE_C_STANDARD 17)
 # set(CMAKE_CXX_STANDARD 20)
 
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 17)
+endif()
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 20)
+endif()
+
 string (APPEND CMAKE_CXX_FLAGS_RELEASE " -O3 ")
 string (APPEND CMAKE_C_FLAGS_RELEASE " -O3 ")
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
+  add_compile_options(-Wall -Wextra -Wpedantic -Wshadow)
 endif()
 
 
@@ -32,6 +39,7 @@ endif()
 #     # set(BUILD_EXAMPLES ON)
 # endif()
 
+
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(geometry_msgs REQUIRED)
@@ -51,7 +59,7 @@ foreach(app ${node_list})
     target_include_directories(${app} PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
-    target_compile_features(${app} PUBLIC c_std_17 cxx_std_20)  # Require C99 and C++17
+    # target_compile_features(${app} PUBLIC c_std_17 cxx_std_20)  # Require C99 and C++17
     ament_target_dependencies(
         ${app}
         geometry_msgs
