@@ -5,6 +5,18 @@ ros2 run <package_name> <executable_name> --ros-args -p <param_name>:=<value>
 ros2 run my_package my_node --ros-args -p message:="Hello, ROS 2!"
 ```
 
+```bash
+ros2 run <package_name> <executable_name> --ros-args -r <remap>
+```
+
+- remap namespace:
+    - `__ns:=/new/namespace`
+    - `node1:__ns:=/node1s/new/namespace`
+- remap name/node (these are the same)
+    - `__name:=left_camera_driver`
+    - `__node:=left_camera_driver`
+    - `camera_driver:__name:=left_camera_driver`
+
 ```python
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
